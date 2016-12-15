@@ -1,18 +1,20 @@
 package com.example.maryan.productssituation;
-
 /**
  * Created by Maryan on 06.12.2016.
  */
-
 public class Category {
     int _id;
     String _category;
     String _description;
-
     // constructors
     public Category(){
         _category="";
         _description="";
+        _id=-1;
+    }
+    public Category(String cat, String dsc){
+        _category=cat;
+        _description=dsc;
         _id=-1;
     }
     public Category(int id,String cat, String dsc){

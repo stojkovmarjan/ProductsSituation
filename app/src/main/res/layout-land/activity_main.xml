@@ -11,18 +11,18 @@
     <Button
         android:id="@+id/button"
         android:layout_width="145dp"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:text="units"
         android:onClick="Button_Click"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/button2"
-        app:layout_constraintRight_toRightOf="@+id/button2" />
+        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintRight_toLeftOf="@+id/button2"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="145dp"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:text="categories"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toTopOf="@+id/activity_main"
@@ -38,11 +38,11 @@
     <Button
         android:id="@+id/button3"
         android:layout_width="145dp"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:text="Products"
         android:onClick="Button_Click"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintRight_toRightOf="@+id/button2"
-        app:layout_constraintLeft_toLeftOf="@+id/button2" />
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toBottomOf="@+id/button2" />
 </android.support.constraint.ConstraintLayout>

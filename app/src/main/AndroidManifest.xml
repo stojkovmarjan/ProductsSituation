@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EnterUnit"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".EnterCategory"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".EnterProduct"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

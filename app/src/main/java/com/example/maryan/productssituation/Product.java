@@ -27,6 +27,13 @@ public class Product {
         _unit=unit;
         _name=name;
     }
+    public Product(int unit,int cat,String name,String dsc){
+        _category=cat;
+        _description=dsc;
+        _id=-1;
+        _unit=unit;
+        _name=name;
+    }
 
     // getters
     public int get_id(){return _id;}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_enter_product"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4"
+    tools:context="com.example.maryan.productssituation.EnterProduct">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:weightSum="4"
+      android:orientation="horizontal">
+
+      <EditText
+          android:id="@+id/txtProduct"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="3"
+          android:ems="10"
+          android:hint="Product"
+          android:inputType="textPersonName" />
+      <AutoCompleteTextView
+          android:id="@+id/autoUnit"
+          android:hint="Unit"
+          android:layout_weight="1"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"/>
+
+  </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:orientation="horizontal">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCategory"
+            android:hint="Category"
+            android:layout_weight="3"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/txtDescription"
+            android:hint="Description"
+            android:layout_width="0dip"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnOK"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dip"
+                android:onClick="Button_Click"
+                android:text="OK" />
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dip"
+                android:text="Cancel"
+                android:onClick="Button_Click" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

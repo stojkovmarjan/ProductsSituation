@@ -1,23 +1,26 @@
 package com.example.maryan.productssituation;
-
 /**
  * Created by Maryan on 06.12.2016.
  */
-
 public class Unit {
-    int _id;
-    String _unit;
-     int _sys;
+    int _id=-1;
+    String _unit="";
+    String _symbol="";
     // constructors -----------------------------------------
     public Unit(){
         _id=-1;
         _unit="";
-        _sys=-1;
+        _symbol="";
     }
-    public Unit(int id, String unit,int sys ){
+    public Unit( String unit,String symbol ){
+        //_id=id; nema potreba
+        _unit=unit;
+       _symbol=symbol;
+    }
+    public Unit( int id,String unit,String symbol ){
         _id=id;
         _unit=unit;
-        _sys=sys;
+        _symbol=symbol;
     }
     // getters------------------------------------------------
     public int get_id(){
@@ -26,9 +29,10 @@ public class Unit {
     public String get_unit(){
         return _unit;
     }
-    public int get_sys(){
-        return _sys;
+    public String get_symbol(){
+        return _symbol;
     }
+
 
     // setters -------------------------------------------
     public void set_id(int id){
@@ -37,8 +41,9 @@ public class Unit {
     public void set_unit(String unit){
         _unit=unit;
     }
-    public void set_sys(int sys){
-        _sys=sys;
+    public void set_symbol(String symbol){
+        _symbol=symbol;
     }
+
 
 }
