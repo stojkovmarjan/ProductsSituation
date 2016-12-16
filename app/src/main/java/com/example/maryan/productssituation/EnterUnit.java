@@ -55,7 +55,7 @@ public class EnterUnit extends AppCompatActivity {
             int err=dbHelper_products.addUnit(unit);
 
                 if (err==19) errMsg("Unit already exists!");
-                if (!(err==19)&&!(err==0)) errMsg("Unknown error!");
+                if (!(err==19)&&!(err==-1)) errMsg("Unknown error!");
 
                 if (err==-1) {
                     errMsg("Unit added!");

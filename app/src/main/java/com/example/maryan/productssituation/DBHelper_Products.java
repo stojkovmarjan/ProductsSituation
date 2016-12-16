@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
-
-
 /**
  * Created by Maryan on 06.12.2016.
  */
@@ -25,19 +23,19 @@ public class DBHelper_Products extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
 
         String createUnits="CREATE TABLE units (" +
-                "id_unit    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                //"id_unit    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 "unit   TEXT," +
                 "symbol TEXT NOT NULL UNIQUE)";
         db.execSQL(createUnits);
 
         String createCategories="CREATE TABLE categories (" +
-                "id_cat INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                //"id_cat INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 "category TEXT NOT NULL UNIQUE," +
                 "description TEXT)";
         db.execSQL(createCategories);
 
         String createProducts="CREATE TABLE products (" +
-                "id_product INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                //"id_product INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 "product TEXT NOT NULL UNIQUE," +
                 "unit INTEGER NOT NULL," +
                 "category INTEGER NOT NULL," +
@@ -46,9 +44,9 @@ public class DBHelper_Products extends SQLiteOpenHelper {
         db.execSQL(createProducts);
 
         String createProductsView="CREATE TEMP VIEW IF NOT EXISTS view_products AS " +
-                "SELECT products.id_product, products.product, units.symbol,categories.category,products.description  " +
+                "SELECT products.rowid, products.product, units.symbol,categories.category,products.description  " +
                 "FROM products, categories,units " +
-                "WHERE ( products.unit=units.id_unit AND products.category=categories.id_cat) " +
+                "WHERE ( products.unit=units.rowid AND products.category=categories.rowid) " +
                 "ORDER BY products.product";
 
         db.execSQL(createProductsView);
@@ -108,7 +106,7 @@ public class DBHelper_Products extends SQLiteOpenHelper {
         } catch (SQLiteConstraintException ex){//
             //System.out.println(ex.toString());
             String exStr=ex.toString().toLowerCase();
-            System.out.println("############################################\n"+ex.toString());
+           // System.out.println("############################################\n"+ex.toString());
             //success=false;
             if (exStr.indexOf("is not unique")>=0) {
                 //Toast.makeText(this,"sasasasasasadsfdfd",Toast.LENGTH_LONG).show();
@@ -139,7 +137,7 @@ public class DBHelper_Products extends SQLiteOpenHelper {
         } catch (SQLiteConstraintException ex){//
             //System.out.println(ex.toString());
             String exStr=ex.toString().toLowerCase();
-            System.out.println("############################################\n"+ex.toString());
+            //System.out.println("############################################\n"+ex.toString());
             //success=false;
             if (exStr.indexOf("is not unique")>=0) {
                 //Toast.makeText(this,"sasasasasasadsfdfd",Toast.LENGTH_LONG).show();
@@ -165,8 +163,8 @@ public class DBHelper_Products extends SQLiteOpenHelper {
         if (cursor.moveToFirst()){
             do{
                 Category cat=new Category();
-                cat.set_category(cursor.getString(1));
-                cat.set_description(cursor.getString(2));
+                cat.set_category(cursor.getString(0));
+                cat.set_description(cursor.getString(1));
                 categories.add(cat);
             } while (cursor.moveToNext());
         }
@@ -182,7 +180,7 @@ public class DBHelper_Products extends SQLiteOpenHelper {
         //cats=listCats.toArray(new String[i]);
       for (int n=0;n<i;n++){
           cats[n]=listCats.get(n).get_category();
-          System.out.println("---------------------------------------- "+cats[n]);
+          //System.out.println("---------------------------------------- "+cats[n]);
       }
         return cats;
     }
@@ -195,8 +193,8 @@ public class DBHelper_Products extends SQLiteOpenHelper {
         if (cursor.moveToFirst()){
             do{
               Unit u=new Unit();
-                u.set_unit(cursor.getString(1));// measure unit name
-                u.set_symbol(cursor.getString(2));// measure unit symbol
+                u.set_unit(cursor.getString(0));// measure unit name
+                u.set_symbol(cursor.getString(1));// measure unit symbol
                 //System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ "+u.get_symbol().toString());
                 units.add(u);
             } while(cursor.moveToNext());
@@ -204,12 +202,13 @@ public class DBHelper_Products extends SQLiteOpenHelper {
         cursor.close();
         return units;
     }
+
     public String[] getUnitsSymbols_Array(){// vrakja lista niza iminja units
         ArrayList<Unit> units=getUnits();
         String [] uSymbols=new String[units.size()];
         for (int n=0;n<units.size();n++){
             uSymbols[n]=units.get(n).get_symbol();
-            System.out.println("---------------------------------------- "+uSymbols[n]);
+            //System.out.println("---------------------------------------- "+uSymbols[n]);
         }
         return uSymbols;
     }
@@ -217,26 +216,27 @@ public class DBHelper_Products extends SQLiteOpenHelper {
     public int getUnitID(String unitSymbol){
         int unitID=-1;
 
-        String selectUnitID="SELECT id_unit FROM units WHERE (symbol='"+unitSymbol+"')";
+        String selectUnitID="SELECT rowid FROM units WHERE (symbol='"+unitSymbol+"')";
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery(selectUnitID,null);
         if (cursor.moveToFirst()){
             unitID=cursor.getInt(0);
         }
-        System.out.print("############################################## ");
-        System.out.println(String.valueOf(unitID));
+        //System.out.print("############################################## ");
+        //System.out.println(String.valueOf(unitID));
         return unitID;
     }
+
     public int getCategoryID(String category){
         int categoryID=-1;
-        String selectUnitID="SELECT id_cat FROM categories WHERE (category='"+category+"')";
+        String selectUnitID="SELECT rowid FROM categories WHERE (category='"+category+"')";
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery(selectUnitID,null);
         if (cursor.moveToFirst()){
             categoryID=cursor.getInt(0);
         }
-        System.out.print("################# CATEGORY ##################### ");
-        System.out.println(String.valueOf(categoryID));
+        //System.out.print("################# CATEGORY ##################### ");
+        //System.out.println(String.valueOf(categoryID));
         return categoryID;
     }
 
